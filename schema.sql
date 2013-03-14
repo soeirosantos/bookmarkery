@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS bookmarks;
 CREATE TABLE bookmarks (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL REFERENCES user(id),
-    description VARCHAR(512) NOT NULL UNIQUE,
+    description VARCHAR(512),
     name VARCHAR(512) NOT NULL,
     url VARCHAR(512) NOT NULL,
     published DATETIME NOT NULL,
