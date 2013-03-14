@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div>
+  <form class="form-inline">
+    <img src="./static/img/bookmark-add.jpg" width="40" height="40" >
+    <input type="text" class="input-small" placeholder="Nome">
+    <input type="text" class="input" placeholder="URL">
+
+    <input type="password" class="input-xlarge" placeholder="Descrição">
+    <input type="text" class="input" placeholder="Marcadores">
+    <button type="submit" class="btn">Adicionar</button>
+  </form>
+</div>
+
+
+<div>
+<span>Filtrar por:  </span>
+ 
+<a href="#">  <span class="label label-info">Python</span></a>
+<a href="#">  <span class="label label-info">Java</span></a>
+<a href="#">  <span class="label label-info">Viagem</span></a>
+<a href="#">  <span class="label label-info">Programação</span></a>
+<a href="#">  <span class="label label-info">Culinária</span></a>
+<a href="#">  <span class="label label-info">Esportes</span></a>
+
+</div>
+
+<div style="margin-top:15px;">
+   <table class="table table-striped" >
+              <thead>
+                <tr>
+                  <th colspan="4"><input type="text" class="input" placeholder="Pesquisar..."></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="#">Tornado</a></td>
+                  <td>http://www.tornadoweb.org/...ch2.4/</td>
+                  <td>Site oficial do Tornado</td>
+                  <td>
+                    <a href="#">  <span class="label label-info">Python</span></a>
+                    <a href="#">  <span class="label label-info">Programação</span></a>
+                  </td>
+                  <td>
+                    15/03/2013
+                  </td>
+                  <td>
+                     <a href="#">x</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td><a href="#">Download JDK</a></td>
+                  <td>http://www.oracle.com/.../index.html</td>
+                  <td></td>
+                  <td><a href="#">  <span class="label label-info">Java</span></a></td>
+<td>
+                    15/03/2013
+                  </td>
+                  <td>
+                     <a href="#">x</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td><a href="#">Globo Esporte</a></td>
+                  <td>http://globoesporte.com</td>
+                  <td></td>
+                  <td><a href="#"><span class="label label-info">Esportes</span></a></td>
+<td>
+                    15/03/2013
+                  </td>
+                  <td>
+                     <a href="#">x</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+</div>
+
+
+{% end %}
