@@ -6,7 +6,7 @@ Aplicação para teste de conceito do [Tornado](http://tornadoweb.org) como ferr
 
 ### Primeira iteração
 * Inclusão/Edição/Exclusão/Listagem de bookmarks
-* Inclusão/Edição/Exclusão de marcadores
+* Inclusão/Exclusão de marcadores ``rs``
 * Associar marcadores a bookmarks
 * Registro de usuário (sign up)
 * Autenticação (sign in)
