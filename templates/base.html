@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <title>Bookmarkery {% block title %}{% end %}</title>
 
-    <link rel="shortcut icon" href="./static/img/favicon.ico">	
 
-    <script src="./static/js/application.js"></script>
 
-    <link href="./static/css/bootstrap.css" rel="stylesheet">
+    <link href="{{ static_url("css/bootstrap.css") }}"            rel="stylesheet">
     <style>
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
     </style>
-    <link href="./static/css/bootstrap-responsive.css" rel="stylesheet">
-    <link rel="stylesheet" href="./static/css/base.css">
+    <link href="{{ static_url("css/bootstrap-responsive.css") }}" rel="stylesheet">
+    <link href="{{ static_url("css/base.css") }}"                 rel="stylesheet">
 
+    <link href="{{ static_url("img/favicon.ico") }}"              rel="shortcut icon"> 
+    <script src="{{ static_url("js/application.js") }}"  ></script>
     {% block head %}{% end %}
   </head>
   <body>
@@ -40,6 +40,6 @@
     </div> <!-- /container -->
 	
 
-  <script src="./static/js/jquery.min.js"></script>
+  <script src="{{ static_url("js/jquery.min.js") }}"></script>
   </body>
 </html>
