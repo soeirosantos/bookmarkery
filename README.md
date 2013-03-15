@@ -5,17 +5,17 @@ Aplicação para teste de conceito do [Tornado](http://tornadoweb.org) como ferr
 ## Funcionalidades
 
 ### Primeira iteração
-* Inclusão/Edição/Exclusão/Listagem de bookmarks
+* Inclusão/Edição/Exclusão/Listagem de bookmarks ``rs``
 * Inclusão/Exclusão de marcadores ``rs``
-* Associar marcadores a bookmarks
-* Registro de usuário (sign up)
-* Autenticação (sign in)
+* Associar marcadores a bookmarks ``rs``
+* Registro de usuário (sign up) ``mv``
+* Autenticação (sign in) ``mv``
+* Obter dados do site (Título, Descrição, Favicon e Marcadores) a partir da URL informada ``mv``
 
 ### Segunda iteração
 * Pesquisar bookmarks
-* Obter dados do site (Título, Descrição, Favicon e Marcadores) a partir da URL informada
 * Compartilhar bookmarks com outros usuários
-* Compartilhar marcadores com outros usuários
+* Compartilhar marcadores (e seus bookmarks) com outros usuários
 
 ### Quarta iteração
 * Publicar bookmark no Facebook
