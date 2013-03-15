@@ -20,3 +20,17 @@ CREATE TABLE users (
     name VARCHAR(100) NOT NULL,
     pswrd VARCHAR(100) NOT NULL
 );
+
+DROP TABLE IF EXISTS labels;
+CREATE TABLE labels (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE,
+    description VARCHAR(100)
+);
+
+DROP TABLE IF EXISTS labels_bookmarks;
+CREATE TABLE bookmarks_labels (
+    bookmark_id INT NOT NULL,
+    label_id INT NOT NULL,
+    PRIMARY KEY(bookmark_id, label_id)
+);
