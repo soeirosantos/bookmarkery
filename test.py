@@ -8,11 +8,12 @@ class IntegrationTest(unittest.TestCase):
 
     def setUp(self):
         self.conn = tornado.database.Connection(
-	        host="/opt/lampp/var/mysql/mysql.sock", database="bookmarkery_db",
+	        host="/opt/lampp/var/mysql/mysql.sock", database="bookmarkery_db_test",
             user="root", password="")
 
     def tearDown(self):
         self.conn.execute("truncate table labels")
+        self.conn.execute("truncate table bookmarks")
 
 
     def get_labels(self):
@@ -43,6 +44,9 @@ class IntegrationTest(unittest.TestCase):
         label = self.get_labels().get_by_id(removed_id)
 
         assert label == None
+
+    def test_insert_bookmark(self):
+        
 
 
 if __name__ == "__main__":
