@@ -3,14 +3,13 @@
 {% block body %}
 
 <div>
-  <form class="form-inline">
+  <form class="form-inline" action="/add" method="post"> 
     <img src="./static/img/bookmark-add.jpg" width="40" height="40" >
-    <input type="text" class="input" placeholder="Nome">
-    <input type="text" class="input" placeholder="URL">
-
-    <input type="password" class="input-xlarge" placeholder="Descrição">
-    <input type="text" class="input" placeholder="Marcadores (separe por vírgula)">
-    <button type="submit" class="btn">Adicionar</button>
+    <input type="text" id="name"        name="name"        class="input" placeholder="Nome">
+    <input type="text" id="url"         name="url"         class="input" placeholder="URL">
+    <input type="text" id="description" name="description" class="input-xlarge" placeholder="Descrição">
+    <input type="text" id="labels"      name="labels"      class="input" placeholder="Marcadores (separe por vírgula)">
+    <input type="submit" class="btn" value="Adicionar">
   </form>
 </div>
 
@@ -34,45 +33,22 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td><a href="#">Tornado</a></td>
-          <td>http://www.tornadoweb.org/...ch2.4/</td>
-          <td>Site oficial do Tornado</td>
-          <td>
-            <a href="#">  <span class="label label-info">Python</span></a>
-            <a href="#">  <span class="label label-info">Programação</span></a>
-          </td>
-          <td>
-            15/03/2013
-          </td>
-          <td>
-             <a href="#">x</a>
-          </td>
-        </tr>
-        <tr>
-          <td><a href="#">Download JDK</a></td>
-          <td>http://www.oracle.com/.../index.html</td>
-          <td></td>
-          <td><a href="#">  <span class="label label-info">Java</span></a></td>
-          <td>
-            15/03/2013
-          </td>
-          <td>
-             <a href="#">x</a>
-          </td>
-        </tr>
-        <tr>
-          <td><a href="#">Globo Esporte</a></td>
-          <td>http://globoesporte.com</td>
-          <td></td>
-          <td><a href="#"><span class="label label-info">Esportes</span></a></td>            
-          <td>
-            15/03/2013
-          </td>
-          <td>
-             <a href="#">x</a>
-          </td>
-        </tr>
+      	{% for bookmark in bookmarks %}
+	      	<tr>
+	          <td><a href="{{ bookmark.url }}">{{ bookmark.name }}</a></td>
+	          <td>{{ bookmark.url }}</td>
+	          <td>{{ bookmark.description }}</td>
+	          <td>
+	            <a href="#">  <span class="label label-info">Python</span></a>
+	            <a href="#">  <span class="label label-info">Programação</span></a>
+	          </td>
+	          <td>{{ bookmark.published }}
+	          </td>
+	          <td>
+	             <a href="delete?id={{ bookmark.id }}">x</a>
+	          </td>
+	        </tr>
+      	{% end %}
       </tbody>
     </table>
 </div>

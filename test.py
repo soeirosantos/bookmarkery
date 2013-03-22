@@ -2,7 +2,7 @@ import unittest
 
 import tornado.database
 
-from labels import Labels
+from bookmarks import Labels, Bookmarks
 
 class IntegrationTest(unittest.TestCase):
 
@@ -18,6 +18,9 @@ class IntegrationTest(unittest.TestCase):
 
     def get_labels(self):
         return Labels(self.conn)
+
+    def get_bookmarks(self):
+        return Bookmarks(self.conn)
 
     def test_get_or_insert_label(self):
         first_label_name = "Python"
@@ -35,19 +38,20 @@ class IntegrationTest(unittest.TestCase):
 
         assert the_same_total and the_same_label 
 
-    def test_remove_label(self):
+    def test_delete_label(self):
         label_name = "Trip"
         result_label = self.get_labels().get_or_insert(label_name)    	
         
-        removed_id = self.get_labels().remove(result_label.id)
+        removed_id = self.get_labels().delete(result_label.id)
 
         label = self.get_labels().get_by_id(removed_id)
 
         assert label == None
 
-    def test_insert_bookmark(self):
-        
-
+    def test_insert_plain_bookmark(self):
+        bookmark = {"name":"Tornado", "url":"http://tornadoweb.org", "description":"site oficial Tornado"}
+        rowid = self.get_bookmarks().insert(bookmark)
+        assert rowid != None and rowid > 0
 
 if __name__ == "__main__":
     unittest.main()
