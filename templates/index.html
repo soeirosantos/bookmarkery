@@ -17,12 +17,9 @@
 <div>
   <span>Filtrar por:  </span>
 
-  <a href="#">  <span class="label label-info">Python</span></a>
-  <a href="#">  <span class="label label-info">Java</span></a>
-  <a href="#">  <span class="label label-info">Viagem</span></a>
-  <a href="#">  <span class="label label-info">Programação</span></a>
-  <a href="#">  <span class="label label-info">Culinária</span></a>
-  <a href="#">  <span class="label label-info">Esportes</span></a>
+  	{% for label in labels %}
+		<a href="#"><span class="label label-info">{{label.name}} </span></a><a href="delete-label?id={{label.id}}" ><span class="label label-info">x</span></a>
+	{% end %}
 </div>
 
 <div style="margin-top:15px;">
@@ -39,8 +36,9 @@
 	          <td>{{ bookmark.url }}</td>
 	          <td>{{ bookmark.description }}</td>
 	          <td>
-	            <a href="#">  <span class="label label-info">Python</span></a>
-	            <a href="#">  <span class="label label-info">Programação</span></a>
+	          	{% for label in bookmark.labels %}
+	            	<span class="label label-info">{{ label.name }}</span><a href="disassociate?bookmark_id={{ bookmark.id }}&label_id={{ label.id }} " ><span class="label label-info"> x</span></a>
+	            {% end %}
 	          </td>
 	          <td>{{ bookmark.published }}
 	          </td>

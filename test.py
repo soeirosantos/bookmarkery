@@ -49,7 +49,7 @@ class IntegrationTest(unittest.TestCase):
         assert label == None
 
     def test_insert_plain_bookmark(self):
-        bookmark = {"name":"Tornado", "url":"http://tornadoweb.org", "description":"site oficial Tornado"}
+        bookmark = {"name":"Tornado", "url":"http://tornadoweb.org", "description":"site oficial Tornado", "labels": ""}
         rowid = self.get_bookmarks().insert(bookmark)
         assert rowid != None and rowid > 0
 
