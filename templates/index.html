@@ -18,7 +18,7 @@
   <span>Filtrar por:  </span>
 
   	{% for label in labels %}
-		<a href="#"><span class="label label-info">{{label.name}} </span></a><a href="delete-label?id={{label.id}}" ><span class="label label-info">x</span></a>
+		<a href="#"><span class="label label-info">{{label.name}} </span></a><a href="delete-label?id={{label.id}}" title="remover marcador" ><span class="label label-info" style="border-left: 1px solid">x</span></a>
 	{% end %}
 </div>
 
@@ -37,7 +37,7 @@
 	          <td>{{ bookmark.description }}</td>
 	          <td>
 	          	{% for label in bookmark.labels %}
-	            	<span class="label label-info">{{ label.name }}</span><a href="disassociate?bookmark_id={{ bookmark.id }}&label_id={{ label.id }} " ><span class="label label-info"> x</span></a>
+	            	<a href="#"><span class="label label-info">{{ label.name }}</span></a><a href="disassociate?bookmark_id={{ bookmark.id }}&label_id={{ label.id }} " title="desassociar marcador"><span class="label label-info"  style="border-left: 1px solid"> x</span></a>
 	            {% end %}
 	          </td>
 	          <td>{{ bookmark.published }}

@@ -49,7 +49,6 @@ class Bookmarks(object):
         bookmarks_hash = {}
         bookmarks = []
         
-        
         for result in results:
             if bookmarks_hash.has_key(result['id']):
                 bookmarks_hash[result['id']].labels.append( Row(itertools.izip( ['id', 'name'], [ result['label_id'], result['label_name'] ] )) )
@@ -76,7 +75,7 @@ class Bookmarks(object):
 
     def get_by_id(self, bookmark_id):
         """
-            retrieve a label by id
+            retrieve a bookmark by id
         """
         return self.conn.get("SELECT * FROM bookmarks WHERE id = %s", int(bookmark_id))
 
