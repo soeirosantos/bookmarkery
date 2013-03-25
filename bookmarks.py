@@ -36,22 +36,53 @@ class Bookmarks(object):
                     SELECT b.*
                           ,l.id as label_id
                           ,l.name as label_name 
-                    FROM bookmarks b 
-                         LEFT JOIN bookmarks_labels bl 
-                             on b.id = bl.bookmark_id 
-                         LEFT JOIN labels l 
-                                 on l.id = bl.label_id 
-                    ORDER BY b.published DESC
+                        FROM bookmarks b 
+                             LEFT JOIN bookmarks_labels bl 
+                                 on b.id = bl.bookmark_id 
+                             LEFT JOIN labels l 
+                                     on l.id = bl.label_id 
+                        ORDER BY b.published DESC
                 """
         
-        results = self.conn.query(query)
+        return self.list(query)
+
+    def list_by_label(self, label_id):
+        """
+            retrieve bookmarks by label
+            TODO: paginate this query
+        """    
         
-        bookmarks_hash = {}
-        bookmarks = []
+        query = """
+                    SELECT b.*
+                          ,l.id as label_id
+                          ,l.name as label_name 
+                        FROM bookmarks b 
+                             LEFT JOIN bookmarks_labels bl 
+                                 on b.id = bl.bookmark_id 
+                             LEFT JOIN labels l 
+                                     on l.id = bl.label_id
+                             WHERE b.id IN 
+                                 (SELECT bl2.bookmark_id 
+                                     FROM bookmarks_labels bl2 
+                                         WHERE bl2.label_id = %s )
+                        ORDER BY b.published DESC
+                """
         
+        return self.list(query, label_id)
+        
+        
+    def list(self, query, *params):
+        results = []
+        if params:
+            results = self.conn.query(query, *params)
+        else:
+            results = self.conn.query(query)
+            
+        bookmarks_control = {}
+        bookmarks = [] # it's just for mantain the query result order
         for result in results:
-            if bookmarks_hash.has_key(result['id']):
-                bookmarks_hash[result['id']].labels.append( Row(itertools.izip( ['id', 'name'], [ result['label_id'], result['label_name'] ] )) )
+            if bookmarks_control.has_key(result['id']):
+                bookmarks_control[result['id']].labels.append( Row(itertools.izip( ['id', 'name'], [ result['label_id'], result['label_name'] ] )) )
             else:
                 bookmark = Row(itertools.izip(['id', 'name', 'url', 'description', 'published', 'labels']
                                              ,[result['id'], result['name'], result['url'], result['description'], result['published'], [] ]))
@@ -59,9 +90,10 @@ class Bookmarks(object):
                     bookmark.labels.append( Row(itertools.izip( ['id', 'name'], [ result['label_id'], result['label_name'] ] )) )
                 
                 bookmarks.append(bookmark)
-                bookmarks_hash[result['id']] = bookmark
+                bookmarks_control[result['id']] = bookmark
         
         return bookmarks
+
 
     def delete(self, bookmark_id):
         """

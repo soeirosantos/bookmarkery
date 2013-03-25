@@ -68,7 +68,12 @@ class Application(tornado.web.Application):
 
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):
-        bookmarks = Bookmarks(self.application.db).all()
+        label_id = self.get_argument("label_id", None)
+        if label_id and label_id.isdigit():
+            bookmarks = Bookmarks(self.application.db).list_by_label(int(label_id))
+        else:
+            bookmarks = Bookmarks(self.application.db).all()
+        
         labels = Labels(self.application.db).all()
         self.render("index.html", bookmarks=bookmarks, labels=labels)
 
