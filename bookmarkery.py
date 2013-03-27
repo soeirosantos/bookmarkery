@@ -2,15 +2,18 @@ import os
 
 try:
     
-    server_port = os.environ['OPENSHIFT_INTERNAL_PORT']
+    server_port = 15001
     server_ip   = address = os.environ['OPENSHIFT_INTERNAL_IP']
-    db_name     = "bookmarkery"
+    db_name     = "tornado"
     db_port     = os.environ['OPENSHIFT_MYSQL_DB_PORT']
     db_host     = os.environ['OPENSHIFT_MYSQL_DB_HOST']
     db_user     = os.environ['OPENSHIFT_MYSQL_DB_USERNAME']
     db_passwd   = os.environ['OPENSHIFT_MYSQL_DB_PASSWORD']
 
-    virtenv = os.environ['OPENSHIFT_HOMEDIR'] + 'python-2.6/virtenv/tornadoenv/'
+    virtenv = os.environ['OPENSHIFT_HOMEDIR'] + 'app-root/runtime/python/env/tornado/'
+    
+    os.environ['PYTHON_EGG_CACHE'] = os.path.join(virtenv, 'lib/python2.6/site-packages')
+    
     virtualenv = os.path.join(virtenv, 'bin/activate_this.py')
     execfile(virtualenv, dict(__file__=virtualenv))
     debug = False
@@ -124,8 +127,12 @@ class DisassociateHandler(tornado.web.RequestHandler):
 
 def main():
     tornado.options.parse_command_line()
-    http_server = tornado.httpserver.HTTPServer(Application())
-    http_server.listen(options.port, address=options.ip)
+    
+    app = Application()
+
+    http_server1 = tornado.httpserver.HTTPServer(app)
+    http_server1.listen(options.port, address=options.ip)
+
     tornado.ioloop.IOLoop.instance().start()
 
 if __name__ == "__main__":
