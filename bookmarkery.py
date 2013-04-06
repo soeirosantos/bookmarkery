@@ -130,8 +130,8 @@ def main():
     
     app = Application()
 
-    http_server1 = tornado.httpserver.HTTPServer(app)
-    http_server1.listen(options.port, address=options.ip)
+    http_server = tornado.httpserver.HTTPServer(app)
+    http_server.listen(options.port, address=options.ip)
 
     tornado.ioloop.IOLoop.instance().start()
 

@@ -4,7 +4,7 @@
 
 <div>
   <form class="form-inline" action="/add" method="post"> 
-    <img src="./static/img/bookmark-add.jpg" width="40" height="40" >
+    <img src="{{ static_url("img/bookmark-add.jpg") }}" width="40" height="40" >
     <input type="text" id="name"        name="name"        class="input" placeholder="Nome">
     <input type="text" id="url"         name="url"         class="input" placeholder="URL">
     <input type="text" id="description" name="description" class="input-xlarge" placeholder="Descrição">
